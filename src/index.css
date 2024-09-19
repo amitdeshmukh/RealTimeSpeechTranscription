@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Noto Sans Devanagari", "Open Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "wdth" 100;
@@ -12,22 +12,27 @@
 }
 
 @layer utilities {
-  .font-open-sans-light {
+  .font-devanagari {
+    font-family: "Noto Sans Devanagari", sans-serif;
+  }
+  .font-devanagari-light {
+    font-family: "Noto Sans Devanagari", sans-serif;
     font-weight: 300;
   }
-  .font-open-sans-regular {
+  .font-devanagari-regular {
+    font-family: "Noto Sans Devanagari", sans-serif;
     font-weight: 400;
   }
-  .font-open-sans-medium {
+  .font-devanagari-medium {
+    font-family: "Noto Sans Devanagari", sans-serif;
     font-weight: 500;
   }
-  .font-open-sans-semibold {
+  .font-devanagari-semibold {
+    font-family: "Noto Sans Devanagari", sans-serif;
     font-weight: 600;
   }
-  .font-open-sans-bold {
+  .font-devanagari-bold {
+    font-family: "Noto Sans Devanagari", sans-serif;
     font-weight: 700;
-  }
-  .font-open-sans-extrabold {
-    font-weight: 800;
   }
 }

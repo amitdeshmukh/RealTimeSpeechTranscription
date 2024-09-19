@@ -62,49 +62,6 @@ const audioConfig = speechsdk.AudioConfig.fromDefaultMicrophoneInput();
 const recognizer = new speechsdk.SpeechRecognizer(speechConfig, audioConfig);
 ```
 
-## Speech-to-text from file
-
-To convert speech-to-text from an audio file, run the app and then click **Convert speech to text from an audio file.**. This will open a file browser and allow you to select an audio file. The following function `fileChange` is bound to an event handler that detects the file change. 
-
-```javascript
-async fileChange(event) {
-    const audioFile = event.target.files[0];
-    console.log(audioFile);
-    const fileInfo = audioFile.name + ` size=${audioFile.size} bytes `;
-
-    this.setState({
-        displayText: fileInfo
-    });
-
-    const tokenObj = await getTokenOrRefresh();
-    const speechConfig = speechsdk.SpeechConfig.fromAuthorizationToken(tokenObj.authToken, tokenObj.region);
-    speechConfig.speechRecognitionLanguage = 'en-US';
-
-    const audioConfig = speechsdk.AudioConfig.fromWavFileInput(audioFile);
-    const recognizer = new speechsdk.SpeechRecognizer(speechConfig, audioConfig);
-
-    recognizer.recognizeOnceAsync(result => {
-        let displayText;
-        if (result.reason === ResultReason.RecognizedSpeech) {
-            displayText = `RECOGNIZED: Text=${result.text}`
-        } else {
-            displayText = 'ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.';
-        }
-
-        this.setState({
-            displayText: fileInfo + displayText
-        });
-    });
-}
-```
-
-You need the audio file as a JavaScript [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) object, so you can grab it directly off the event target using `const audioFile = event.target.files[0];`. Next, you use the file to create the `AudioConfig` and then pass it to the recognizer.
-
-```javascript
-const audioConfig = speechsdk.AudioConfig.fromWavFileInput(audioFile);
-const recognizer = new speechsdk.SpeechRecognizer(speechConfig, audioConfig);
-```
-
 ## Token exchange process
 
 This sample application shows an example design pattern for retrieving and managing tokens, a common task when using the Speech JavaScript SDK in a browser environment. A simple Express back-end is implemented in the same project under `server/index.js`, which abstracts the token retrieval process. 
@@ -153,14 +110,14 @@ export async function getTokenOrRefresh() {
             const region = res.data.region;
             cookie.set('speech-token', region + ':' + token, {maxAge: 540, path: '/'});
 
-            console.log('Token fetched from back-end: ' + token);
+            console.log('Token fetched from back-end');
             return { authToken: token, region: region };
         } catch (err) {
             console.log(err.response.data);
             return { authToken: null, error: err.response.data };
         }
     } else {
-        console.log('Token fetched from cookie: ' + speechToken);
+        console.log('Token fetched from cookie');
         const idx = speechToken.indexOf(':');
         return { authToken: speechToken.slice(idx + 1), region: speechToken.slice(0, idx) };
     }
