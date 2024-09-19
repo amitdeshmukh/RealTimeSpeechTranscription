@@ -127,20 +127,20 @@ export default function App() {
                     <div className="space-y-6">
                         <div className="flex items-center justify-between mb-2">
                             <span className={`text-sm font-medium ${isListening ? 'text-green-600' : 'text-red-600'}`}>
-                                {isListening ? `Listening (${language === 'en-US' ? 'English' : 'Marathi'})` : 'Not Listening'}
+                                {isListening ? `Listening in ${language === 'en-US' ? 'English' : 'Marathi'}` : 'Not Listening'}
                             </span>
                             <span className={`h-3 w-3 rounded-full ${isListening ? 'bg-green-600' : 'bg-red-600'}`}></span>
                         </div>
                         <button 
                             onClick={sttFromMic} 
-                            className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${isListening ? 'bg-red-600 hover:bg-red-700' : 'bg-indigo-600 hover:bg-indigo-700'} md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105`}
+                            className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${isListening ? 'bg-purple-600 hover:bg-purple-700' : 'bg-blue-500 hover:bg-blue-600'} md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105`}
                         >
                             <i className={`fas ${isListening ? 'fa-stop' : 'fa-microphone'} text-xl mr-2`}></i>
                             {isListening ? 'Stop Listening' : 'Start Speech to Text'}
                         </button>
                         <button 
                             onClick={toggleLanguage}
-                            className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105"
+                            className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105"
                         >
                             <i className="fas fa-language text-xl mr-2"></i>
                             Switch to {language === 'en-US' ? 'Marathi' : 'English'}
@@ -155,7 +155,7 @@ export default function App() {
                             />
                             <button 
                                 onClick={textToSpeech} 
-                                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105"
+                                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105"
                             >
                                 <i className="fas fa-volume-up text-xl mr-2"></i>
                                 Text to Speech
@@ -164,7 +164,7 @@ export default function App() {
                         <button 
                             onClick={handleMute} 
                             disabled={!player.p}
-                            className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${player.p ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-400 cursor-not-allowed'} md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105`}
+                            className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${player.p ? 'bg-purple-500 hover:bg-purple-600' : 'bg-gray-400 cursor-not-allowed'} md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105`}
                         >
                             <i className="fas fa-volume-mute text-xl mr-2"></i>
                             Pause/Resume Audio
