@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
+}
+
+@layer utilities {
+  .font-open-sans-light {
+    font-weight: 300;
+  }
+  .font-open-sans-regular {
+    font-weight: 400;
+  }
+  .font-open-sans-medium {
+    font-weight: 500;
+  }
+  .font-open-sans-semibold {
+    font-weight: 600;
+  }
+  .font-open-sans-bold {
+    font-weight: 700;
+  }
+  .font-open-sans-extrabold {
+    font-weight: 800;
+  }
+}
