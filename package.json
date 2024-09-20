@@ -1,5 +1,6 @@
 {
-  "name": "speech-sample",
+  "name": "speak",
+  "description": "A simple React app that uses the Microsoft Azure Speech SDK to convert text to speech in real time.",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
