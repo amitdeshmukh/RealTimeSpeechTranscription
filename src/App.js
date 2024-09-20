@@ -41,8 +41,11 @@ export default function App() {
             if (e.result.reason === ResultReason.RecognizedSpeech) {
                 const newRecognition = `> ${e.result.text}`;
                 setRecognitionHistory(prevHistory => {
-                    const updatedHistory = [newRecognition, ...prevHistory].slice(0, 19);
-                    return updatedHistory;
+                    const maxHistoryLength = 50;
+                    const updatedHistory = [newRecognition, ...prevHistory];
+                    return updatedHistory.length > maxHistoryLength 
+                        ? updatedHistory.slice(0, maxHistoryLength) 
+                        : updatedHistory;
                 });
                 setCurrentRecognizing('');
             }
