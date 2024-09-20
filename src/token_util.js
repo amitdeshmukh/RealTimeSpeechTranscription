@@ -1,13 +1,15 @@
 import axios from 'axios';
 import Cookie from 'universal-cookie';
 
+const TOKEN_URL = process.env.REACT_APP_TOKEN_URL
+
 export async function getTokenOrRefresh() {
     const cookie = new Cookie();
     const speechToken = cookie.get('speech-token');
 
     if (speechToken === undefined) {
         try {
-            const res = await axios.get('/api/get-speech-token');
+            const res = await axios.get(TOKEN_URL);
             const token = res.data.token;
             const region = res.data.region;
             cookie.set('speech-token', region + ':' + token, {maxAge: 540, path: '/'});
