@@ -1,6 +1,6 @@
 {
-  "short_name": "Voice to Text",
-  "name": "Voice to Text Transcription App",
+  "short_name": "Voice Scribe",
+  "name": "Voice Scribe Transcription App",
   "icons": [
     {
       "src": "favicon.ico",

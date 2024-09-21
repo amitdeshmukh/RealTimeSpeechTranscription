@@ -125,7 +125,7 @@ export default function App() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl w-full space-y-8 bg-white p-10 rounded-xl shadow-2xl">
-                <h1 className="text-5xl font-extrabold text-center text-gray-900 mb-10">Speech Magic</h1>
+                <h1 className="text-5xl font-extrabold text-center text-gray-900 mb-10">Voice Scribe</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     <div className="space-y-6">
                         <div className="flex items-center justify-between mb-2">
@@ -148,30 +148,32 @@ export default function App() {
                             <i className="fas fa-language text-xl mr-2"></i>
                             Switch to {language === 'en-US' ? 'Marathi' : 'English'}
                         </button>
-                        <div className="space-y-2 mt-6">
-                            <textarea
-                                value={inputText}
-                                onChange={(e) => setInputText(e.target.value)}
-                                placeholder="Enter text to speak..."
-                                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
-                                rows="4"
-                            />
+                        <div className="hidden">
+                            <div className="space-y-2 mt-6">
+                                <textarea
+                                    value={inputText}
+                                    onChange={(e) => setInputText(e.target.value)}
+                                    placeholder="Enter text to speak..."
+                                    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                                    rows="4"
+                                />
+                                <button 
+                                    onClick={textToSpeech} 
+                                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105"
+                                >
+                                    <i className="fas fa-volume-up text-xl mr-2"></i>
+                                    Text to Speech
+                                </button>
+                            </div>
                             <button 
-                                onClick={textToSpeech} 
-                                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105"
+                                onClick={handleMute} 
+                                disabled={!player.p}
+                                className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${player.p ? 'bg-purple-500 hover:bg-purple-600' : 'bg-gray-400 cursor-not-allowed'} md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105`}
                             >
-                                <i className="fas fa-volume-up text-xl mr-2"></i>
-                                Text to Speech
+                                <i className="fas fa-volume-mute text-xl mr-2"></i>
+                                Pause/Resume Audio
                             </button>
                         </div>
-                        <button 
-                            onClick={handleMute} 
-                            disabled={!player.p}
-                            className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${player.p ? 'bg-purple-500 hover:bg-purple-600' : 'bg-gray-400 cursor-not-allowed'} md:py-4 md:text-lg md:px-10 transition duration-150 ease-in-out transform hover:scale-105`}
-                        >
-                            <i className="fas fa-volume-mute text-xl mr-2"></i>
-                            Pause/Resume Audio
-                        </button>
                     </div>
                     <div className="bg-gray-800 text-gray-300 p-6 rounded-lg h-[calc(100vh-12rem)] overflow-auto shadow-inner flex flex-col-reverse">
                         {currentRecognizing && (
